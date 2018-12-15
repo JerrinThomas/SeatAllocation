@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable({
+                serverSide:true,
+                processing:true,
+                ajax:{
+                    url: '/reqQue',
+                    type: 'POST'
+                },
+                columns:[
+                {data: 'empID'},    
+                {data: 'name'},
+                {data: 'requestBy'},
+                {data: 'curSeat'},
+                {data: 'reqSeat'},
+                {
+                    data: null,
+                    orderable: false,
+                    render: function(data){
+                        return(
+                            '<button onclick="window.location.href=\'/accept'+data.empID+'&'+data.reqSeat+'\'">&#10004</button>'+
+                            '<button onclick="window.location.href=\'/reject'+data.empID+'\'">&#10008</button>'
+                        )
+                    }
+                }
+                    
+
+                ]
+            })
+                    } );
+    </script>
+    
+</head>
+<body>
+<table id="example" class="display" >
+        <thead>
+            <tr>
+                <th>Employee Id</th>
+                <th>Employee Name</th>
+                <th>Requested By</th>
+                <th>Current Seat</th>
+                <th>Requested Seat</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+    </table>
+</body>
+</html>
