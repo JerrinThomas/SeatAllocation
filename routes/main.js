@@ -91,6 +91,11 @@ router.get('/test', function (req, res, next) {
 
 
 /************************************** Search ***********************************************/
+router.get('/searches',function(req,res){
+    res.render('searchemp')
+})
+
+
 router.post('/searches', function (req, res) {
     var datatablesQuery = require("datatables-query")
     params = req.body
@@ -103,7 +108,7 @@ router.post('/searches', function (req, res) {
     }, function (err) {
         res.status(500).json(err);
     })
-    res.render('admin-search');
+    //res.render('admin-search');
 });
 
 
