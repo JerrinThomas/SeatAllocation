@@ -111,7 +111,18 @@ router.get('/admin',function(req,res){
 
 /************************************ Admin Search *******************************************/
 
-router.get('/admin-search', function (req, res) {
+router.post('/searches', function (req, res) {
+    var datatablesQuery = require("datatables-query")
+    params = req.body
+    query = datatablesQuery(reqQue);
+
+    query.run(params).then(function (data) {
+        //console.log(data)
+
+        res.json(data);
+    }, function (err) {
+        res.status(500).json(err);
+    })
     res.render('admin-search');
 });
 
@@ -140,16 +151,18 @@ router.post('/admin-alloc',function(req,res){
         Employee.findOne({empID: req.body.emp_id}).then(function(docs){
             query={seatNo: docs.seatNo};
             Seats.update(query, { $set: { seatStatus: 'Free' } }, function (err) {
-                console.log(err);
+               // console.log(err);
             }); 
+            query={seatNo: req.body.seat_no};
+            Seats.update(query, { $set: { seatStatus: 'Occupied' } }, function (err) {
+               // console.log(err);
+            });
         })
         Employee.update(query, { $set: { seatNo: req.body.seat_no } }, function (err) {
-            console.log(err);
+           // console.log(err);
         });
-        query={seatNo: req.body.seat_no};
-        Seats.update(query, { $set: { seatStatus: 'Occupied' } }, function (err) {
-            console.log(err);
-        });
+      
+        
 
         var nodemailer = require('nodemailer');
 
@@ -171,7 +184,7 @@ router.post('/admin-alloc',function(req,res){
             from: req.session.user.mail,
             to: user_data.mail,
             subject: 'Seat Allocated',
-            text: user_data.name+ 'you have been allocated '
+            text: user_data.name+ ' you have been allocated '
                 + req.body.seat_no +
                 ' as your new seat.'
         };
