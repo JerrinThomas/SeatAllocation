@@ -355,46 +355,49 @@ router.get('/man-request',function(req,res){
     res.render('manager/man-request')
 })
 
-router.post('/man-alloc',function(req,res){
+router.post('/man-request',function(req,res){
     
-  
-    
+
+
+
+
 
     var nodemailer = require('nodemailer');
-    Employee.find({role: 'Admin' }).then(function (docs) {
-        user_data = docs[0];
+
     var transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: user_data.mail,
-        pass: 'lordcares'
-    }
-    });
-
-    var user_data;
-    //var employee=require('../models/employees');
-   
-
-    console.log(user_data);
-    var mailOptions = {
-        from: req.session.user.mail,
-        to: user_data.mail,
-        subject: 'Seat Allocation Request',
-        text: 'Please allocate '+ req.body.empID + ' to seat '
-            + req.body.seat_no +
-            ' .'
-    };
-
-    transporter.sendMail(mailOptions, function (error, info) {
-        if (error) {
-            console.log(error);
-        } else {
-            console.log('Email sent: ' + info.response);
+        service: 'gmail',
+        auth: {
+            user: 'joniejacob1996@gmail.com',
+            pass: 'lordcares'
         }
     });
 
-    var request = Request();
-    Employee.findOne({empID: req.body.emp_id}).then(function(docs){
+    var user_data;
+    var employee = require('../models/employees');
+    employee.find({ empID: req.body.emp_id }).then(function (docs) {
+        user_data = docs[0];
+
+        console.log(user_data);
+        var mailOptions = {
+            from: 'joniejacob1996@gmail.com',
+            to: user_data.mail,
+            subject: 'Seat Change Request',
+            text: 'Please allocate '+ req.body.emp_id + ' to seat '
+            + req.body.seat_no +
+            ' .'
+        };
+
+        transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+                console.log(error);
+            } else {
+                console.log('Email sent: ' + info.response);
+            }
+        });
+
+    })
+        var request = Request();
+        Employee.findOne({empID: req.body.emp_id}).then(function(docs){
         request.name= docs.name;
         request.empID= docs.empID;
         request.requestBy=req.session.user.name;
@@ -402,11 +405,19 @@ router.post('/man-alloc',function(req,res){
         request.reqSeat= req.body.seat_no;
 
         request.save(function(err){});
-    })
-});
-res.redirect('/admin');
-})
 
+
+
+
+    });
+
+
+
+
+  
+res.redirect('/man-request');
+
+});
 
 
 
@@ -416,15 +427,15 @@ res.redirect('/admin');
 /************************************* Employee Page *********************************************/
 /************************************************************************************************/
 
-router.get('/employee', function (req, res) {
-    res.redirect('/employee');
+router.get('/emp-index', function (req, res) {
+    res.render('employee/emp-index');
 })
 
 
 /************************************ Employee Search *******************************************/
 
 router.get('/employee-search', function (req, res) {
-    res.render('employee-search');
+    res.render('employee/emp-search');
 });
 
 
@@ -439,9 +450,76 @@ router.get('/employee-search', function (req, res) {
 /********************************** Employee change seat request ***********************************/
 
 
-router.get('/Employee-allocation',function(req,res){
-
+router.get('/emp-request',function(req,res){
+    res.render('employee/emp-request')
 })
+
+
+router.post('/emp-request',function(req,res){
+    
+
+
+
+
+
+    var nodemailer = require('nodemailer');
+
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'joniejacob1996@gmail.com',
+            pass: 'lordcares'
+        }
+    });
+
+    var user_data;
+    var employee = require('../models/employees');
+    employee.find({ empID: req.body.emp_id }).then(function (docs) {
+        user_data = docs[0];
+
+        console.log(user_data);
+        var mailOptions = {
+            from: 'joniejacob1996@gmail.com',
+            to: user_data.mail,
+            subject: 'Seat Change Request',
+            text: 'Please allocate '+ req.body.emp_id + ' to seat '
+            + req.body.seat_no +
+            ' .'
+        };
+
+        transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+                console.log(error);
+            } else {
+                console.log('Email sent: ' + info.response);
+            }
+        });
+
+    })
+        var request = Request();
+        Employee.findOne({empID: req.body.emp_id}).then(function(docs){
+        request.name= docs.name;
+        request.empID= docs.empID;
+        request.requestBy=req.session.user.name;
+        request.curSeat= docs.seatNo;
+        request.reqSeat= req.body.seat_no;
+
+        request.save(function(err){});
+
+
+
+
+    });
+
+
+
+
+  
+res.redirect('/emp-request');
+
+});
+
+
 
 
 /***********************************************************************************************/
