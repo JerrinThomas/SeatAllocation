@@ -135,6 +135,57 @@ router.get('/freeSeats',function(req,res){
     })
 })
 
+router.post('/admin-alloc',function(req,res){
+        var query={empID:req.body.emp_id};
+        Employee.findOne({empID: req.body.emp_id}).then(function(docs){
+            query={seatNo: docs.seatNo};
+            Seats.update(query, { $set: { seatStatus: 'Free' } }, function (err) {
+                console.log(err);
+            }); 
+        })
+        Employee.update(query, { $set: { seatNo: req.body.seat_no } }, function (err) {
+            console.log(err);
+        });
+        query={seatNo: req.body.seat_no};
+        Seats.update(query, { $set: { seatStatus: 'Occupied' } }, function (err) {
+            console.log(err);
+        });
+
+        var nodemailer = require('nodemailer');
+
+        var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: req.session.user.mail,
+            pass: 'lordcares'
+        }
+        });
+
+        var user_data;
+        //var employee=require('../models/employees');
+        Employee.find({ empID: req.body.emp_id }).then(function (docs) {
+        user_data = docs[0];
+
+        console.log(user_data);
+        var mailOptions = {
+            from: req.session.user.mail,
+            to: user_data.mail,
+            subject: 'Seat Allocated',
+            text: user_data.name+ 'you have been allocated '
+                + req.body.seat_no +
+                ' as your new seat.'
+        };
+
+        transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+                console.log(error);
+            } else {
+                console.log('Email sent: ' + info.response);
+            }
+        });
+    });
+    res.redirect('/admin');
+})
 
 
 /********************************** Admin Request Queue ***********************************/

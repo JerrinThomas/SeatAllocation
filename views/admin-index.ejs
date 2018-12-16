@@ -83,34 +83,34 @@
           <div  id="allocate-seat"  class="d-none justify-content-between align-items-center pt-3 pb-2 mb-3 border-bottom content-area">
               <h1 class="h2">Allocate Seat</h1>
 
-              <form class="form-horizontal" method="POST">
+              <form class="form-horizontal" method="POST" action='/admin-alloc'>
                 <fieldset>
 
                 <!-- Form Name -->
               
-                <!-- Text input-->
+                <!-- Text input
                 <div class="form-group">
                   <label class="col-md-4 control-label" for="emp_name">Employee Name</label>  
                   <div class="col-md-4">
                   <input id="emp_name" name="emp_name" type="text" placeholder="Name" class="form-control input-md" required="">
                     
                   </div>
-                </div>
+                </div>-->
 
                 <!-- Text input-->
                 <div class="form-group">
                   <label class="col-md-4 control-label" for="emp_id">Employee ID</label>  
                   <div class="col-md-4">
-                  <input id="emp_id" name="emp_id" type="text" placeholder="Employee Id" class="form-control input-md" required="">
+                  <input id="emp_id" name="emp_id" type="text" placeholder="Employee Id" class="form-control input-md" required="required">
                     
                   </div>
                 </div>
 
                 <!-- Select Basic -->
                 <div class="form-group">
-                  <label class="col-md-4 control-label" for="seat_id">Select Seat</label>
+                  <label class="col-md-4 control-label" for="seat_no">Select Seat</label>
                   <div class="col-md-4">
-                    <select id="seat_id" name="seat_id" class="form-control">
+                    <select id="seat_id" name="seat_no" class="form-control">
                     </select>
                   </div>
                 </div>
