@@ -77,7 +77,7 @@ router.post('/add-employee', function (req, res, next) {
 
     employee.save(function (err) {
         if (err) throw err
-        res.redirect('/add-employee')
+        res.redirect('/admin')
     })
 })
 
@@ -347,8 +347,10 @@ router.get('/man-search', function (req, res) {
 
 /************************************ Manager Floor Map *******************************************/
 
-
-
+/************************************ Add employee *******************************************/
+router.get('/admin-add',function(req,res){
+    res.redirect('/add-employee')
+})
 
 
 /********************************** Manager change seat request ***********************************/
