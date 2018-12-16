@@ -7,17 +7,15 @@
     <meta name="author" content="">
 
     <title>Tata Elsxi Seat Allocation</title>
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
     <!-- Custom styles for this template -->
-    <link href="/stylesheet/dashboard.css" rel="stylesheet">
+    <link href="dashboard.css" rel="stylesheet">
       
-     <!--  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    
       
      <!--
     <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -28,13 +26,8 @@
     <script src="https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js"></script>  -->
 
         <script>
-
-       
-
-      
-      $(document).ready(function() {
+        $(document).ready(function() {
             $('#searchemp').DataTable({
-
                 serverSide:true,
                 processing:true,
                 ajax:{
@@ -44,51 +37,14 @@
                 columns:[
                 {data: 'empID'},    
                 {data: 'name'},
-                {data: 'seatNo'},                 
-                ] 
-            }*/);
-  
-      
-      </script>
-      
-      
-    
-    <script>
-        $(document).ready(function() {
-            $('#example').DataTable({
-                serverSide:true,
-                processing:true,
-                ajax:{
-                    url: '/reqQue',
-                    type: 'POST'
-                },
-                columns:[
-                {data: 'empID'},    
-                {data: 'name'},
-                {data: 'requestBy'},
-                {data: 'curSeat'},
-                {data: 'reqSeat'},
-                {
-                    data: null,
-                    orderable: false,
-                    render: function(data){
-                        return(
-                            '<button onclick="window.location.href=\'/accept'+data.empID+'&'+data.reqSeat+'\'">&#10004</button>'+
-                            '<button onclick="window.location.href=\'/reject'+data.empID+'\'">&#10008</button>'
-                        )
-                    }
-                }
-                    
+                
+                {data: 'curSeat'},            
 
                 ]
             })
-                    } );
+         } );
     </script>
-
-
-
-
-
+      
   </head>
 
   <body>
@@ -119,9 +75,9 @@
             </div>
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link sidebar-link active" data-target="floor-plan" href="#">
+                <a class="nav-link sidebar-link " data-target="floor-plan" href="#">
                   <span data-feather="map"></span>
-                  Floor Plan <span class="sr-only">(current)</span>
+                  Floor Plan 
                 </a>
               </li>
               <li class="nav-item">
@@ -137,9 +93,9 @@
                 </a>
               </li>
                  <li class="nav-item">
-                <a class="nav-link sidebar-link" data-target="search-employee" href="#">
+                <a class="nav-link sidebar-link active" data-target="search-employee" href="#">
                   <span data-feather="user"></span>
-                  Search Employee
+                  Search Employee<span class="sr-only">(current)</span>
                 </a>
               </li>
             </ul>
@@ -149,7 +105,7 @@
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
           
-          <div id="floor-plan" class="d-block justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom content-area ">
+         <!-- <div id="floor-plan" class="d-block justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom content-area ">
               <h1 class="h2">Floor Plan</h1>
              <!--  <div class="btn-toolbar mb-2 mb-md-0">
                 <div class="btn-group mr-2">
@@ -157,27 +113,10 @@
                   <button class="btn btn-sm btn-outline-secondary">Export</button>
                 </div>
               </div> -->
-              <div id="floor-image">
-              <img src="/image"
-              
-              </div>
-              
-          </div>
+         <!-- </div> 
 
           <div  id="view-requests"  class="d-none justify-content-between align-items-center pt-3 pb-2 mb-3 border-bottom content-area">
             <h1>Allocation Requests</h1><br>
-            <table id="example" class="display" >
-        <thead>
-            <tr>
-                <th>Employee Id</th>
-                <th>Employee Name</th>
-                <th>Requested By</th>
-                <th>Current Seat</th>
-                <th>Requested Seat</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-    </table>
           </div>
 
           <div  id="allocate-seat"  class="d-none justify-content-between align-items-center pt-3 pb-2 mb-3 border-bottom content-area">
@@ -196,9 +135,9 @@
                     
                   </div>
                 </div>-->
-
+           
                 <!-- Text input-->
-                <div class="form-group">
+         <!--       <div class="form-group">
                   <label class="col-md-4 control-label" for="emp_id">Employee ID</label>  
                   <div class="col-md-4">
                   <input id="emp_id" name="emp_id" type="text" placeholder="Employee Id" class="form-control input-md" required="required">
@@ -207,7 +146,7 @@
                 </div>
 
                 <!-- Select Basic -->
-                <div class="form-group">
+        <!--        <div class="form-group">
                   <label class="col-md-4 control-label" for="seat_no">Select Seat</label>
                   <div class="col-md-4">
                     <select id="seat_id" name="seat_no" class="form-control">
@@ -216,7 +155,7 @@
                 </div>
 
                 <!-- Button -->
-                <div class="form-group">
+          <!--      <div class="form-group">
                   <div class="col-md-4">
                     <button id="submit" name="submit" class="btn btn-primary">Allocate</button>
                   </div>
@@ -228,7 +167,7 @@
 
 
           </div>
-          
+      -->   
          <div  id="search-employee"  class="d-none justify-content-between align-items-center pt-3 pb-2 mb-3 border-bottom content-area">
               <h1>Search Employee</h1> <br>
              <hr>
@@ -282,28 +221,9 @@
             $('#' + $clickedElem.attr('data-target')).addClass('d-block');
           });
 
-          var fillDropDown = function(seatArray) {
+         
 
-            console.log(seatArray);
-
-            $('#seat_id').html("");
-            for (var i = 0; i < seatArray.length; i++) {
-              $('#seat_id').append($('<option value="' + seatArray[i].seatNo + '"> ' + seatArray[i].seatNo + ' </option>'));
-            }
-          };
-
-          var errorOccurred = function(data) {
-            alert('Network error' + data);
-          };
-
-
-          $.ajax({
-            url: '/freeSeats',
-            dataType: 'json',
-            success: fillDropDown,
-            error: errorOccurred
-          });
-
+        
 
           // var seatArray = ["2342", "32423", "23432"];
           // fillDropDown(seatArray);
@@ -318,29 +238,7 @@
        * @param {string} [method=post] the method to use on the form
        */
 
-      function post(path, params, method) {
-          method = method || "post"; // Set method to post by default if not specified.
-
-          // The rest of this code assumes you are not using a library.
-          // It can be made less wordy if you use one.
-          var form = document.createElement("form");
-          form.setAttribute("method", method);
-          form.setAttribute("action", path);
-
-          for(var key in params) {
-              if(params.hasOwnProperty(key)) {
-                  var hiddenField = document.createElement("input");
-                  hiddenField.setAttribute("type", "hidden");
-                  hiddenField.setAttribute("name", key);
-                  hiddenField.setAttribute("value", params[key]);
-
-                  form.appendChild(hiddenField);
-              }
-          }
-
-          document.body.appendChild(form);
-          form.submit();
-      }
+     
     </script>
   </body>
 </html>
