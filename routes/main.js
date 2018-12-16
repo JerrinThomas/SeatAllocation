@@ -102,7 +102,7 @@ router.get('/test', function (req, res, next) {
 
 router.get('/admin',function(req,res){
    
-        res.render('admin-index');
+        res.render('admin/admin-index');
     
    
 })
@@ -113,7 +113,7 @@ router.get('/admin',function(req,res){
 /************************************ Admin Search *******************************************/
 
 router.get('/searches',function(req,res){
-    res.render('admin-search')
+    res.render('admin/admin-search')
 })
 
 
@@ -144,7 +144,7 @@ router.post('/searches', function (req, res) {
 /********************************** Admin change seat *****************************************/
 
 router.get('/admin-alloc',function(req,res){
-    res.render('admin-alloc')
+    res.render('admin/admin-alloc')
 })
 router.get('/freeSeats',function(req,res){
     Seats.find({seatStatus:'Free'}).then(function(docs){
@@ -211,7 +211,7 @@ router.post('/admin-alloc',function(req,res){
 
 /********************************** Admin Request Queue ***********************************/
 router.get('/reqQue',function(req,res){
-    res.render('requests');
+    res.render('admin/requests');
 })
 
 router.post('/reqQue', function (req, res) {
