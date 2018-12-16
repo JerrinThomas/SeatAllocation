@@ -434,7 +434,7 @@ router.get('/emp-index', function (req, res) {
 
 /************************************ Employee Search *******************************************/
 
-router.get('/employee-search', function (req, res) {
+router.get('/emp-search', function (req, res) {
     res.render('employee/emp-search');
 });
 
@@ -546,7 +546,7 @@ router.post('/index', function (req, res) {
         }
         else {
             console.log('employee');
-            res.redirect('/employee');
+            res.redirect('/emp-index');
         }
     })
 
