@@ -27,22 +27,78 @@
     <script src="https://nightly.datatables.net/js/jquery.dataTables.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js"></script>  -->
 
-        
+        <script>
+
+       
+
+      
+      $(document).ready(function() {
+            $('#searchemp').DataTable({
+
+                serverSide:true,
+                processing:true,
+                ajax:{
+                    url: '/searches',
+                    type: 'POST'
+                },
+                columns:[
+                {data: 'empID'},    
+                {data: 'name'},
+                {data: 'seatNo'},                 
+                ] 
+            }*/);
+  
+      
+      </script>
+      
+      
+    
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable({
+                serverSide:true,
+                processing:true,
+                ajax:{
+                    url: '/reqQue',
+                    type: 'POST'
+                },
+                columns:[
+                {data: 'empID'},    
+                {data: 'name'},
+                {data: 'requestBy'},
+                {data: 'curSeat'},
+                {data: 'reqSeat'},
+                {
+                    data: null,
+                    orderable: false,
+                    render: function(data){
+                        return(
+                            '<button onclick="window.location.href=\'/accept'+data.empID+'&'+data.reqSeat+'\'">&#10004</button>'+
+                            '<button onclick="window.location.href=\'/reject'+data.empID+'\'">&#10008</button>'
+                        )
+                    }
+                }
+                    
+
+                ]
+            })
+                    } );
+    </script>
+
+
 <style>
       
-       #floor-imge      {
+    #floor-imge      {
         
         vertical-align: middle;
-      border-style: none;
-      width: 80%;
-      height: 80%;
+    border-style: none;
+    width: 80%;
+    height: 80%;
         
     }
       
       
-      
       </style>
-
 
 
   </head>
@@ -66,34 +122,29 @@
         <nav class="col-md-2 d-block d-md-block bg-light sidebar">
           <div class="sidebar-sticky">
             <div align="center">
-              <img align="center" src="/image/elxsi.jpg" style="width:150px;">
+              <img align="center" src="elxsi.jpg" style="width:150px;">
               <br>
               <br>
               <h3 class="admin-text">
-                Admin  
+                Employee  
               </h3>
             </div>
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link sidebar-link active" data-target="floor-plan" href="#">
+                <a class="nav-link sidebar-link " data-target="floor-plan" href="/emp-index">
                   <span data-feather="map"></span>
                   Floor Plan <span class="sr-only">(current)</span>
                 </a>
               </li>
+             
               <li class="nav-item">
-                <a class="nav-link sidebar-link" data-target="view-requests" href="/reqQue">
-                  <span data-feather="file"></span>
-                  View Requests
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link sidebar-link" data-target="allocate-seat" href="/admin-alloc">
+                <a class="nav-link sidebar-link active" data-target="allocate-seat" href="#">
                   <span data-feather="user"></span>
-                  Allocate Seat
+                  Request Seat
                 </a>
               </li>
                  <li class="nav-item">
-                <a class="nav-link sidebar-link" data-target="search-employee" href="/searches">
+                <a class="nav-link sidebar-link" data-target="search-employee" href="/emp-search">
                   <span data-feather="user"></span>
                   Search Employee
                 </a>
@@ -105,13 +156,53 @@
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
           
-          <div id="floor-plan" class="d-block justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom content-area ">
-              <h1 class="h2">Floor Plan</h1>
-             <div id="floor-img">
+          <div  id="allocate-seat"  class="d-none justify-content-between align-items-center pt-3 pb-2 mb-3 border-bottom content-area">
+              <h1 class="h2">Allocate Seat</h1>
+
+              <form class="form-horizontal" method="POST" action='/admin-alloc'>
+                <fieldset>
+
+                <!-- Form Name -->
               
-              <img id ="floor-imge" src="/image/floor.jpg"/>
-              
-              </div>
+                <!-- Text input
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="emp_name">Employee Name</label>  
+                  <div class="col-md-4">
+                  <input id="emp_name" name="emp_name" type="text" placeholder="Name" class="form-control input-md" required="">
+                    
+                  </div>
+                </div>-->
+           
+                <!-- Text input-->
+             <div class="form-group">
+                  <label class="col-md-4 control-label" for="emp_id">Employee ID</label>  
+                  <div class="col-md-4">
+                  <input id="emp_id" name="emp_id" type="text" placeholder="Employee Id" class="form-control input-md" required="required">
+                    
+                  </div>
+                </div>
+
+                <!-- Select Basic -->
+               <div class="form-group">
+                  <label class="col-md-4 control-label" for="seat_no">Select Seat</label>
+                  <div class="col-md-4">
+                    <select id="seat_id" name="seat_no" class="form-control">
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Button -->
+               <div class="form-group">
+                  <div class="col-md-4">
+                    <button id="submit" name="submit" class="btn btn-primary">Allocate</button>
+                  </div>
+                </div>
+
+
+                </fieldset>
+                </form>
+
+
           </div>
 
           </main>
