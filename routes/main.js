@@ -204,7 +204,7 @@ router.post('/admin-alloc',function(req,res){
 
 /********************************** Admin Request Queue ***********************************/
 router.get('/reqQue',function(req,res){
-    res.render('RequestQue');
+    res.render('requests');
 })
 
 router.post('/reqQue', function (req, res) {
