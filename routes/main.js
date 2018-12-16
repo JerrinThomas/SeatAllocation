@@ -361,19 +361,19 @@ router.post('/man-alloc',function(req,res){
     
 
     var nodemailer = require('nodemailer');
-
+    Employee.find({role: 'Admin' }).then(function (docs) {
+        user_data = docs[0];
     var transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'joniejacob1996@gmailcom',
+        user: user_data.mail,
         pass: 'lordcares'
     }
     });
 
     var user_data;
     //var employee=require('../models/employees');
-    Employee.find({role: 'Admin' }).then(function (docs) {
-    user_data = docs[0];
+   
 
     console.log(user_data);
     var mailOptions = {
