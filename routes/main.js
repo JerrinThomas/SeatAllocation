@@ -97,7 +97,7 @@ router.get('/test', function (req, res, next) {
 /**********************************************************************************************/
 
 router.get('/admin',function(req,res){
-    res.redirect('/reqQue');
+    res.render('admin-index');
 })
 
 
