@@ -6,7 +6,7 @@ router.use(bodyParser.urlencoded({
 }))
 var Employee = require('../models/employees')
 var Seats = require('../models/seats')
-
+var Request =require('../models/requests')
 
 
 
@@ -355,6 +355,57 @@ router.get('/manager-request',function(req,res){
     res.render('manager/man-request')
 })
 
+router.post('/admin-alloc',function(req,res){
+    
+  
+    
+
+    var nodemailer = require('nodemailer');
+
+    var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'joniejacob1996@gmailcom',
+        pass: 'lordcares'
+    }
+    });
+
+    var user_data;
+    //var employee=require('../models/employees');
+    Employee.find({role: 'Admin' }).then(function (docs) {
+    user_data = docs[0];
+
+    console.log(user_data);
+    var mailOptions = {
+        from: req.session.user.mail,
+        to: user_data.mail,
+        subject: 'Seat Allocation Request',
+        text: 'Please allocate '+ req.body.empID + ' to seat '
+            + req.body.seat_no +
+            ' .'
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Email sent: ' + info.response);
+        }
+    });
+
+    var request = Request();
+    Employee.findOne({empID: req.body.emp_id}).then(function(docs){
+        request.name= docs.name;
+        request.empID= docs.empID;
+        request.requestBy=req.session.user.name;
+        request.curSeat= docs.seatNo;
+        request.reqSeat= req.body.seat_no;
+
+        request.save(function(err){});
+    })
+});
+res.redirect('/admin');
+})
 
 
 
