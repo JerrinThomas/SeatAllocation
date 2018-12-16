@@ -328,8 +328,8 @@ router.get('/reject:ID', function (req, res) {
 /************************************* Manager Page *********************************************/
 /***********************************************************************************************/
 
-router.get('/manager', function (req, res) {
-    res.reender('manager/man-index');
+router.get('/man-index', function (req, res) {
+    res.render('manager/man-index');
 })
 
 
@@ -351,11 +351,11 @@ router.get('/man-search', function (req, res) {
 /********************************** Manager change seat request ***********************************/
 
 
-router.get('/manager-request',function(req,res){
+router.get('/man-request',function(req,res){
     res.render('manager/man-request')
 })
 
-router.post('/admin-alloc',function(req,res){
+router.post('/man-alloc',function(req,res){
     
   
     
@@ -464,7 +464,7 @@ router.post('/index', function (req, res) {
             res.redirect('/admin');
         } else if (docs.role == 'Manager') {
             console.log('manager');
-            res.redirect('/manager');
+            res.redirect('/man-index');
         }
         else {
             console.log('employee');
