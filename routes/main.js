@@ -476,7 +476,9 @@ router.post('/index', function (req, res) {
 
 
 
-
+router.get('/signout',function(req,res){
+    res.redirect('/');
+})
 
 router.get('/', function (req, res, next) {
     res.redirect('/index');

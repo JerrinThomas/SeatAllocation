@@ -27,63 +27,8 @@
     <script src="https://nightly.datatables.net/js/jquery.dataTables.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js"></script>  -->
 
-        <script>
-
-       
-
-      
-      $(document).ready(function() {
-            $('#searchemp').DataTable({
-
-                serverSide:true,
-                processing:true,
-                ajax:{
-                    url: '/searches',
-                    type: 'POST'
-                },
-                columns:[
-                {data: 'empID'},    
-                {data: 'name'},
-                {data: 'seatNo'},                 
-                ] 
-            }*/);
-  
-      
-      </script>
-      
-      
     
-    <script>
-        $(document).ready(function() {
-            $('#example').DataTable({
-                serverSide:true,
-                processing:true,
-                ajax:{
-                    url: '/reqQue',
-                    type: 'POST'
-                },
-                columns:[
-                {data: 'empID'},    
-                {data: 'name'},
-                {data: 'requestBy'},
-                {data: 'curSeat'},
-                {data: 'reqSeat'},
-                {
-                    data: null,
-                    orderable: false,
-                    render: function(data){
-                        return(
-                            '<button onclick="window.location.href=\'/accept'+data.empID+'&'+data.reqSeat+'\'">&#10004</button>'+
-                            '<button onclick="window.location.href=\'/reject'+data.empID+'\'">&#10008</button>'
-                        )
-                    }
-                }
-                    
-
-                ]
-            })
-                    } );
-    </script>
+    
 
 
 <style>
