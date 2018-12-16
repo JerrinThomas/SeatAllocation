@@ -13,18 +13,22 @@
     <!-- Custom styles for this template -->
     <link href="dashboard.css" rel="stylesheet">
       
+       <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+      
+     <!--
     <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="https://nightly.datatables.net/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
     <script src="https://nightly.datatables.net/js/jquery.dataTables.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js"></script>  -->
 
         <script>
-      
-      $(document).ready(function() {
-            $('#searchresults').DataTable(
-               /* serverSide:true,
+        $(document).ready(function() {
+            $('#searchemp').DataTable({
+                serverSide:true,
                 processing:true,
                 ajax:{
                     url: '/searches',
@@ -34,14 +38,12 @@
                 {data: 'empID'},    
                 {data: 'name'},
                 
-                {data: 'curSeat'},                 
+                {data: 'curSeat'},            
 
-                ] */
-            );
-    });
-      
-      </script>
-      
+                ]
+            })
+         } );
+    </script>
       
   </head>
 
@@ -49,7 +51,7 @@
     <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
       <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Tata Elxsi</a>
      <!-- <input id="search_input" class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"> -->
-      <button type="submit" class="btn btn-primary" id="submit_search" data-toggle="modal" data-target="#myModal"><span data-feather="search"></span></button>
+    <!--  <button type="submit" class="btn btn-primary" id="submit_search" data-toggle="modal" data-target="#myModal"><span data-feather="search"></span></button> -->
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
           <a class="nav-link" href="#">Sign out</a>
@@ -57,36 +59,7 @@
       </ul>
     </nav>
       
-     <!--Modal 2 -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-       <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
-        <h4 class="modal-title" id="myModalLabel">Search Employee</h4>
-          <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-      </div>
-      <div class="modal-body">
-        <table id="example" class="table table-striped table-hover responsive">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Emp ID</th>
-            <th>Current Seat</th>
-            
-          </tr>
-        </thead>
-          </table>
-      
-        </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-      </div>
-    </div>
-  </div>
-</div>
-      
+   
 
     <div class="container-fluid">
       <div class="row">
@@ -119,6 +92,12 @@
                   Allocate Seat
                 </a>
               </li>
+                 <li class="nav-item">
+                <a class="nav-link sidebar-link" data-target="search-employee" href="#">
+                  <span data-feather="user"></span>
+                  Search Employee
+                </a>
+              </li>
             </ul>
 
           </div>
@@ -137,8 +116,7 @@
           </div>
 
           <div  id="view-requests"  class="d-none justify-content-between align-items-center pt-3 pb-2 mb-3 border-bottom content-area">
-              d
-            sfsdfsdf
+            <h1>Allocation Requests</h1><br>
           </div>
 
           <div  id="allocate-seat"  class="d-none justify-content-between align-items-center pt-3 pb-2 mb-3 border-bottom content-area">
@@ -190,6 +168,21 @@
 
           </div>
           
+         <div  id="search-employee"  class="d-none justify-content-between align-items-center pt-3 pb-2 mb-3 border-bottom content-area">
+              <h1>Search Employee</h1> <br>
+             <hr>
+             <table id="searchemp" class="display" >
+        <thead>
+            <tr>
+                <th>Employee Id</th>
+                <th>Employee Name</th>
+                
+                <th>Current Seat</th>
+               
+            </tr>
+        </thead>
+    </table>
+        </div>  
         </main>
       </div>
     </div>
