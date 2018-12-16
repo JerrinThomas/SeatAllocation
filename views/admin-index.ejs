@@ -23,8 +23,8 @@
         <script>
       
       $(document).ready(function() {
-            $('#searchresults').DataTable(
-               /* serverSide:true,
+            $('#searchresults').DataTable({
+                serverSide:true,
                 processing:true,
                 ajax:{
                     url: '/searches',
@@ -33,11 +33,9 @@
                 columns:[
                 {data: 'empID'},    
                 {data: 'name'},
-                
-                {data: 'curSeat'},                 
-
-                ] */
-            );
+                {data: 'seatNo'},                 
+                ] 
+            });
     });
       
       </script>
