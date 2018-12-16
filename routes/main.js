@@ -23,7 +23,7 @@ router.get('/fake-data',function(req,res){
 
 router.get('/add-seat',function(req,res){
     for (var i = 0; i < 20; i++) {
-        var seat=new Seat();
+        var seat=new Seats();
         seat.seatNo= i+1;
         seat.seatStatus = 'Free';
     }
@@ -68,7 +68,7 @@ router.post('/add-employee', function (req, res, next) {
     employee.mail = req.body.mail
 
     var query = { seatNo: req.body.seat };
-    Seat.update(query, { $set: { seatStatus: 'Occupied' } }, function (err) {
+    Seats.update(query, { $set: { seatStatus: 'Occupied' } }, function (err) {
         console.log(err);
     });
 
@@ -129,6 +129,9 @@ router.get('/admin-allocation',function(req,res){
 
 /********************************** Admin Request Queue ***********************************/
 
+router.get('/reqQue',function(req,res){
+    res.render('RequestQue');
+})
 
 router.post('/reqQue', function (req, res) {
     // console.log(req.body);
