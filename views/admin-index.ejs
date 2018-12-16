@@ -20,6 +20,28 @@
     <script src="https://nightly.datatables.net/js/jquery.dataTables.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js"></script>
 
+        <script>
+      
+      $(document).ready(function() {
+            $('#searchresults').DataTable(
+               /* serverSide:true,
+                processing:true,
+                ajax:{
+                    url: '/searches',
+                    type: 'POST'
+                },
+                columns:[
+                {data: 'empID'},    
+                {data: 'name'},
+                
+                {data: 'curSeat'},                 
+
+                ] */
+            );
+    });
+      
+      </script>
+      
       
   </head>
 
