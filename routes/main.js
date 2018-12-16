@@ -114,7 +114,7 @@ router.get('/admin',function(req,res){
 router.post('/searches', function (req, res) {
     var datatablesQuery = require("datatables-query")
     params = req.body
-    query = datatablesQuery(reqQue);
+    query = datatablesQuery(Employee);
 
     query.run(params).then(function (data) {
         //console.log(data)
