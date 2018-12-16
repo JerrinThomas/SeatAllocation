@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  margin-right: 400px;
+  margin-left: 400px;
+}
+</style>
+<script type="text/javascript">
+  var test=function(){
+    //alert("ddev");
+    var select = document.getElementById("vacancy");
+
+    var vacancy=["1","2","3"];
+    for (var i = vacancy.length - 1; i >= 0; i--) {
+      var option = document.createElement("option");
+      option.text = "Text"+ vacancy[i];
+      console.log( vacancy[i]);
+      option.value =  vacancy[i];
+      select.appendChild(option);
+     
+    }
+    
+  }
+
+</script>
+</head>
+<body onload="test()">
+
+<div class="container">
+  <form method="POST">
+    <label for="fname">Employee Name</label>
+    <input type="text" id="ename" name="employeename" placeholder="Employee name..">
+
+    <label for="id">Employee Id</label>
+    <input type="text" id="eid" name="empid" placeholder="Employee id..">
+
+    <label for="vacancy">Vacant seat</label>
+    <select id="vacancy" name="vacancy">
+      
+    </select>
+    <input type="submit" value="Allocate">
+  </form>
+</div>
+
+</body>
+</html>
