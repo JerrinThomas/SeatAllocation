@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Tata Elsxi Seat Allocation</title>
+
+    <!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="dashboard.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Tata Elxsi</a>
+      <input id="search_input" class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+      <button type="submit" class="btn btn-primary" id="submit_search"><span data-feather="search"></span></button>
+      <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+          <a class="nav-link" href="#">Sign out</a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="col-md-2 d-block d-md-block bg-light sidebar">
+          <div class="sidebar-sticky">
+            <div align="center">
+              <img align="center" src="elxsi.jpg" style="width:150px;">
+              <br>
+              <br>
+              <h3 class="admin-text">
+                Admin  
+              </h3>
+            </div>
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link sidebar-link active" data-target="floor-plan" href="#">
+                  <span data-feather="map"></span>
+                  Floor Plan <span class="sr-only">(current)</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link sidebar-link" data-target="view-requests" href="#">
+                  <span data-feather="file"></span>
+                  View Requests
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link sidebar-link" data-target="allocate-seat" href="#">
+                  <span data-feather="user"></span>
+                  Allocate Seat
+                </a>
+              </li>
+            </ul>
+
+          </div>
+        </nav>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+          
+          <div id="floor-plan" class="d-block justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom content-area ">
+              <h1 class="h2">Floor Plan</h1>
+             <!--  <div class="btn-toolbar mb-2 mb-md-0">
+                <div class="btn-group mr-2">
+                  <button class="btn btn-sm btn-outline-secondary">Share</button>
+                  <button class="btn btn-sm btn-outline-secondary">Export</button>
+                </div>
+              </div> -->
+          </div>
+
+          <div  id="view-requests"  class="d-none justify-content-between align-items-center pt-3 pb-2 mb-3 border-bottom content-area">
+              d
+            sfsdfsdf
+          </div>
+
+          <div  id="allocate-seat"  class="d-none justify-content-between align-items-center pt-3 pb-2 mb-3 border-bottom content-area">
+              <h1 class="h2">Allocate Seat</h1>
+
+              <form class="form-horizontal" method="POST">
+                <fieldset>
+
+                <!-- Form Name -->
+              
+                <!-- Text input-->
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="emp_name">Employee Name</label>  
+                  <div class="col-md-4">
+                  <input id="emp_name" name="emp_name" type="text" placeholder="Name" class="form-control input-md" required="">
+                    
+                  </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="emp_id">Employee ID</label>  
+                  <div class="col-md-4">
+                  <input id="emp_id" name="emp_id" type="text" placeholder="Employee Id" class="form-control input-md" required="">
+                    
+                  </div>
+                </div>
+
+                <!-- Select Basic -->
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="seat_id">Select Seat</label>
+                  <div class="col-md-4">
+                    <select id="seat_id" name="seat_id" class="form-control">
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Button -->
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <button id="submit" name="submit" class="btn btn-primary">Submit</button>
+                  </div>
+                </div>
+
+
+                </fieldset>
+                </form>
+
+
+          </div>
+          
+        </main>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <!-- Icons -->
+    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+    <script>
+      feather.replace()
+    </script>
+
+    <script>
+      $(function() {
+
+        // Setting up search button
+        $('#submit_search').click(function() {
+          var searchTerm = $('#search_input').val();
+          post('/searchurl', {'query' : searchTerm});
+        });
+
+        // Setting up sidebar button click behaviour
+          $('.sidebar-link').click(function(elem) {
+            $('.sidebar-link').removeClass('active');
+            $('.content-area').removeClass('d-block');
+            $('.content-area').addClass('d-none');
+            var $clickedElem = $(elem.currentTarget);
+            $clickedElem.addClass('active');
+            $('#' + $clickedElem.attr('data-target')).addClass('d-block');
+          });
+
+          var fillDropDown = function(seatArray) {
+
+            console.log(seatArray);
+
+            $('#seat_id').html("");
+            for (var i = 0; i < seatArray.length; i++) {
+              $('#seat_id').append($('<option value="' + seatArray[i] + '"> ' + seatArray[i] + ' </option>'));
+            }
+          };
+
+          var errorOccurred = function(data) {
+            alert('Network error' + data);
+          };
+
+
+          $.ajax({
+            url: 'https://randomuser.me/api/',
+            dataType: 'json',
+            success: fillDropDown,
+            error: errorOccurred
+          });
+
+
+          // var seatArray = ["2342", "32423", "23432"];
+          // fillDropDown(seatArray);
+      });
+
+
+
+      /**
+       * sends a request to the specified url from a form. this will change the window location.
+       * @param {string} path the path to send the post request to
+       * @param {object} params the paramiters to add to the url
+       * @param {string} [method=post] the method to use on the form
+       */
+
+      function post(path, params, method) {
+          method = method || "post"; // Set method to post by default if not specified.
+
+          // The rest of this code assumes you are not using a library.
+          // It can be made less wordy if you use one.
+          var form = document.createElement("form");
+          form.setAttribute("method", method);
+          form.setAttribute("action", path);
+
+          for(var key in params) {
+              if(params.hasOwnProperty(key)) {
+                  var hiddenField = document.createElement("input");
+                  hiddenField.setAttribute("type", "hidden");
+                  hiddenField.setAttribute("name", key);
+                  hiddenField.setAttribute("value", params[key]);
+
+                  form.appendChild(hiddenField);
+              }
+          }
+
+          document.body.appendChild(form);
+          form.submit();
+      }
+    </script>
+  </body>
+</html>
