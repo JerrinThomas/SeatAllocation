@@ -118,7 +118,7 @@
                 <!-- Button -->
                 <div class="form-group">
                   <div class="col-md-4">
-                    <button id="submit" name="submit" class="btn btn-primary">Submit</button>
+                    <button id="submit" name="submit" class="btn btn-primary">Allocate</button>
                   </div>
                 </div>
 
@@ -173,7 +173,7 @@
 
             $('#seat_id').html("");
             for (var i = 0; i < seatArray.length; i++) {
-              $('#seat_id').append($('<option value="' + seatArray[i] + '"> ' + seatArray[i] + ' </option>'));
+              $('#seat_id').append($('<option value="' + seatArray[i].seatNo + '"> ' + seatArray[i].seatNo + ' </option>'));
             }
           };
 
