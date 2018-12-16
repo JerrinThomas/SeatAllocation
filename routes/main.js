@@ -97,7 +97,7 @@ router.post('/searches', function (req, res) {
     query = datatablesQuery(Employee);
 
     query.run(params).then(function (data) {
-        //console.log(data)
+        console.log(data)
 
         res.json(data);
     }, function (err) {
