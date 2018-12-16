@@ -329,14 +329,14 @@ router.get('/reject:ID', function (req, res) {
 /***********************************************************************************************/
 
 router.get('/manager', function (req, res) {
-    res.reender('admin/manager-index');
+    res.reender('manager/man-index');
 })
 
 
 /************************************ Manager Search *******************************************/
 
-router.get('/admin-search', function (req, res) {
-    res.render('admin-search');
+router.get('/man-search', function (req, res) {
+    res.render('manager/man-search');
 });
 
 
@@ -351,8 +351,8 @@ router.get('/admin-search', function (req, res) {
 /********************************** Manager change seat request ***********************************/
 
 
-router.get('/manager-allocation',function(req,res){
-
+router.get('/manager-request',function(req,res){
+    res.render('manager/man-request')
 })
 
 
