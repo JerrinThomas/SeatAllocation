@@ -277,6 +277,7 @@ router.get('/accept:ID&:reqSeat', function (req, res) {
             }
         });
     });
+    res.redirect('/reqQue')
 })
 
 router.get('/reject:ID', function (req, res) {
@@ -291,6 +292,7 @@ router.get('/reject:ID', function (req, res) {
             user: req.session.user.mail,
             pass: 'lordcares'
         }
+        
     });
 
     var user_data;
@@ -316,6 +318,7 @@ router.get('/reject:ID', function (req, res) {
             }
         });
     });
+    res.redirect('/reqQue')
 })
 
 
