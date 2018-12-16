@@ -329,7 +329,7 @@ router.get('/reject:ID', function (req, res) {
 /***********************************************************************************************/
 
 router.get('/manager', function (req, res) {
-    res.redirect('/manager-index');
+    res.reender('admin/manager-index');
 })
 
 
