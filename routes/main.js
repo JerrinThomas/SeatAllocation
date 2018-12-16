@@ -90,7 +90,21 @@ router.get('/test', function (req, res, next) {
 })
 
 
+/************************************** Search ***********************************************/
+router.post('/searches', function (req, res) {
+    var datatablesQuery = require("datatables-query")
+    params = req.body
+    query = datatablesQuery(Employee);
 
+    query.run(params).then(function (data) {
+        //console.log(data)
+
+        res.json(data);
+    }, function (err) {
+        res.status(500).json(err);
+    })
+    res.render('admin-search');
+});
 
 
 
@@ -111,20 +125,7 @@ router.get('/admin',function(req,res){
 
 /************************************ Admin Search *******************************************/
 
-router.post('/searches', function (req, res) {
-    var datatablesQuery = require("datatables-query")
-    params = req.body
-    query = datatablesQuery(Employee);
 
-    query.run(params).then(function (data) {
-        //console.log(data)
-
-        res.json(data);
-    }, function (err) {
-        res.status(500).json(err);
-    })
-    res.render('admin-search');
-});
 
 
 
