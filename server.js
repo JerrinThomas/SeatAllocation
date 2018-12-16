@@ -23,9 +23,8 @@ app.use(bodyParser.urlencoded({
 }))
 app.use(Routes)
 app.set('view engine', 'ejs')
-app.use(express.static(__dirname + '/public'));
-
-
+app.use('/stylesheet',express.static(__dirname + '/public/stylesheets'));
+app.use('/image',express.static(__dirname + '/public/images'));
 
 app.listen(8080, function () {
     console.log('Node.js listening on port ' + 8080)

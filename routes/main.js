@@ -97,7 +97,10 @@ router.get('/test', function (req, res, next) {
 /**********************************************************************************************/
 
 router.get('/admin',function(req,res){
-    res.render('admin-index');
+   
+        res.render('admin-index');
+    
+   
 })
 
 
@@ -121,8 +124,11 @@ router.get('/admin-search', function (req, res) {
 /********************************** Admin change seat *****************************************/
 
 
-router.get('/admin-allocation',function(req,res){
-
+router.get('/freeSeats',function(req,res){
+    Seats.find({seatStatus:'Free'}).then(function(docs){
+        console.log(docs);
+        res.send(docs);
+    })
 })
 
 
@@ -350,4 +356,4 @@ router.get('/', function (req, res, next) {
 });
 
 
-module.exports = router
+module.exports = router;
