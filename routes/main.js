@@ -177,8 +177,8 @@ router.post('/admin-alloc',function(req,res){
         var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: req.session.user.mail,
-            pass: 'lordcares'
+            user: 'tataelxsiseata@gmail.com',
+            pass: 'tataseata'
         }
         });
 
@@ -235,6 +235,15 @@ router.post('/reqQue', function (req, res) {
 
 
 router.get('/accept:ID&:reqSeat', function (req, res) {
+    
+    Employee.findOne({empID: req.params.ID}).then(function(docs){
+        query={seatNo: docs.seatNo};
+        Seats.update(query, { $set: { seatStatus: 'Free' } }, function (err) {
+           // console.log(err);
+        }); 
+    });
+    
+    
     var employee = require('../models/employees');
     console.log(req.params.ID);
     var query = { empID: req.params.ID };
@@ -244,13 +253,23 @@ router.get('/accept:ID&:reqSeat', function (req, res) {
     var reqQue = require('../models/requests');
     reqQue.deleteOne({ empID: req.params.ID }, function (err) { });
     res.render('RequestQue');
+
+
+
+    query={seatNo: req.params.reqSeat};
+    Seats.update(query, { $set: { seatStatus: 'Occupied' } }, function (err) {
+       // console.log(err);
+    });
+
+
+
     var nodemailer = require('nodemailer');
 
     var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: req.session.user.mail,
-            pass: 'lordcares'
+            user: 'tataelxsiseata@gmail.com',
+            pass: 'tataseata'
         }
     });
 
@@ -289,8 +308,8 @@ router.get('/reject:ID', function (req, res) {
     var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: req.session.user.mail,
-            pass: 'lordcares'
+            user: 'tataelxsiseata@gmail.com',
+            pass: 'tataseata'
         }
         
     });
@@ -302,7 +321,7 @@ router.get('/reject:ID', function (req, res) {
 
         console.log(user_data);
         var mailOptions = {
-            from: req.session.user.mail,
+            from: 'tataelxsiseata@gmail.com',
             to: user_data.mail,
             subject: 'Request rejected',
             text: 'Your request for seat allocation for Emp ID: '
@@ -372,8 +391,8 @@ router.post('/man-request',function(req,res){
     var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: 'joniejacob1996@gmail.com',
-            pass: 'lordcares'
+            user: 'tataelxsiseata@gmail.com',
+            pass: 'tataseata'
         }
     });
 
@@ -384,7 +403,7 @@ router.post('/man-request',function(req,res){
 
         console.log(user_data);
         var mailOptions = {
-            from: 'joniejacob1996@gmail.com',
+            from: 'tataelxsiseata@gmail.com',
             to: user_data.mail,
             subject: 'Seat Change Request',
             text: 'Please allocate '+ req.body.emp_id + ' to seat '
@@ -472,8 +491,8 @@ router.post('/emp-request',function(req,res){
     var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: 'joniejacob1996@gmail.com',
-            pass: 'lordcares'
+            user: 'tataelxsiseata@gmail.com',
+            pass: 'tataseata'
         }
     });
 
@@ -484,7 +503,7 @@ router.post('/emp-request',function(req,res){
 
         console.log(user_data);
         var mailOptions = {
-            from: 'joniejacob1996@gmail.com',
+            from: 'tataelxsiseata@gmail.com',
             to: user_data.mail,
             subject: 'Seat Change Request',
             text: 'Please allocate '+ req.body.emp_id + ' to seat '
